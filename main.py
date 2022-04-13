@@ -191,7 +191,5 @@ if __name__ == '__main__':
         job TEXT
     ) """)
     db.commit()
-    for value in sql.execute("SELECT * FROM users"):
-        print(value)
 
 bot.polling(none_stop=True)
