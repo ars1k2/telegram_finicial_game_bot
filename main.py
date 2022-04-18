@@ -86,8 +86,9 @@ def start(message):
     item1 = types.KeyboardButton("💰 Balance")
     item2 = types.KeyboardButton("🏢 Work")
     item3 = types.KeyboardButton("💼 Get a new job")
+    item4 = types.KeyboardButton("🔝 Top players")
 
-    markup1.add(item1, item2, item3)
+    markup1.add(item1, item2, item3, item4)
 
     bot.send_message(message.chat.id, "Welcome, {0.first_name}!\n"
                                       "I - <b> {1.first_name} </b>\n"
@@ -180,6 +181,16 @@ def commands(message):
                                               '\n'
                                               'Choose who you want to be:'.format(message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup2)
             bot.register_next_step_handler(message, select_job)
+
+        elif message.text == '🔝 Top players':
+
+            string = '🔝 Top 5 players: \n'
+            sql.execute("SELECT * FROM users ORDER BY cash DESC LIMIT 5")
+            info = sql.fetchall()
+            for value in info:
+                string = string + f'{value[0]}      {value[1]}' + '💵\n'
+            bot.send_message(message.chat.id, string.format(message.from_user, bot.get_me()))
+
 
 if __name__ == '__main__':
     db = sqlite3.connect('server.db', check_same_thread=False)
