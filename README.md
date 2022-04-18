@@ -3,3 +3,4 @@
 * ##### ⌨️ Written in pyTelegramBotAPI
 * ##### ⌚ You can only work once an hour
 * ##### 🌏 Used by SQLite3
+* ##### 🔝 There are top players
